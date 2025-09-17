@@ -1,46 +1,303 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Dropout Prediction</title>
-  <link rel="stylesheet" href="style.css"> 
-    
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Dropout Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Student Dropout Prediction</h2>
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
 
-    <label>Name:</label>
-    <input type="text" id="name">
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h1>AI Dropout Predictor</h1>
+            <p>Advanced Student Risk Assessment System</p>
+        </div>
 
-    <label>Department:</label>
-    <input type="text" id="dept">
+        <form id="predictionForm">
+            <div class="section-title">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Student Information</h3>
+            </div>
 
-    <label>Year:</label>
-    <input type="number" id="year">
+            <div class="form-group">
+                <label for="name">
+                    <i class="fas fa-user"></i> Student Name
+                </label>
+                <div class="input-container">
+                    <input type="text" id="name" placeholder="Enter student full name" required>
+                </div>
+            </div>
 
-    <label>Attendance %:</label>
-    <input type="number" id="attendance">
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="dept">
+                        <i class="fas fa-building"></i> Department
+                    </label>
+                    <div class="input-container">
+                        <select id="dept" required>
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group half">
+                    <label for="year">
+                        <i class="fas fa-calendar-alt"></i> Academic Year
+                    </label>
+                    <div class="input-container">
+                        <select id="year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">First Year</option>
+                            <option value="2">Second Year</option>
+                            <option value="3">Third Year</option>
+                            <option value="4">Fourth Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-    <label>Average Marks:</label>
-    <input type="number" id="marks">
+            <div class="section-title">
+                <i class="fas fa-chart-line"></i>
+                <h3>Academic Performance</h3>
+            </div>
 
-    <label>Assignments Submitted %:</label>
-    <input type="number" id="assignments">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Attendance Rate</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="attendance" min="0" max="100" placeholder="85" required>
+                        <span class="input-suffix">%</span>
+                    </div>
+                    <div class="metric-hint">Overall class attendance</div>
+                </div>
 
-    <label>Backlogs:</label>
-    <input type="number" id="backlogs">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-star"></i>
+                        <span>Average Marks</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="marks" min="0" max="100" placeholder="78" required>
+                        <span class="input-suffix">%</span>
+                    </div>
+                    <div class="metric-hint">Average across all subjects</div>
+                </div>
 
-    <label>Payment Status (1 = Paid, 0 = Not Paid):</label>
-    <input type="number" id="payment" value="1">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-tasks"></i>
+                        <span>Assignment Completion</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="assignments" min="0" max="100" placeholder="90" required>
+                        <span class="input-suffix">%</span>
+                    </div>
+                    <div class="metric-hint">Assignments submitted on time</div>
+                </div>
 
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Academic Backlogs</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="backlogs" min="0" placeholder="0" required>
+                        <span class="input-suffix">subjects</span>
+                    </div>
+                    <div class="metric-hint">Failed subjects count</div>
+                </div>
+            </div>
 
+            <div class="section-title">
+                <i class="fas fa-credit-card"></i>
+                <h3>Financial Status</h3>
+            </div>
 
-    <button onclick="predict()">Predict</button>
+            <div class="form-group">
+                <label for="payment">Payment Status</label>
+                <div class="payment-toggle">
+                    <input type="radio" id="paid" name="payment" value="1" checked>
+                    <label for="paid" class="payment-option paid">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Fees Paid</span>
+                    </label>
+                    
+                    <input type="radio" id="unpaid" name="payment" value="0">
+                    <label for="unpaid" class="payment-option unpaid">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Fees Pending</span>
+                    </label>
+                </div>
+            </div>
 
-    <div id="result"></div>
-  </div>
+            <button type="button" class="predict-btn" onclick="predict()">
+                <span class="btn-text">
+                    <i class="fas fa-magic"></i>
+                    Predict Dropout Risk
+                </span>
+                <div class="btn-loader">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Analyzing...
+                </div>
+            </button>
+        </form>
 
-  <script src="script.js"></script>
+        <div id="result" class="result-container">
+            <div class="result-content">
+                <div class="result-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="result-text">
+                    <h3 id="result-title">Prediction Result</h3>
+                    <p id="result-description">Risk analysis complete</p>
+                </div>
+                <div class="result-probability">
+                    <div class="probability-circle">
+                        <span id="probability-value">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="result-recommendations">
+                <h4>Recommendations:</h4>
+                <ul id="recommendations-list">
+                    <!-- Recommendations will be added here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Powered by Advanced Machine Learning • Built with ❤️ for Education</p>
+        </div>
+    </div>
+
+    <script>
+        function predict() {
+            // Get form data
+            const name = document.getElementById('name').value;
+            const dept = document.getElementById('dept').value;
+            const year = document.getElementById('year').value;
+            const attendance = document.getElementById('attendance').value;
+            const marks = document.getElementById('marks').value;
+            const assignments = document.getElementById('assignments').value;
+            const backlogs = document.getElementById('backlogs').value;
+            const payment = document.querySelector('input[name="payment"]:checked').value;
+
+            // Validate form
+            if (!name || !dept || !year || !attendance || !marks || !assignments || backlogs === '') {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Show loading state
+            const btn = document.querySelector('.predict-btn');
+            btn.classList.add('loading');
+
+            // Simulate prediction (replace with actual ML model call)
+            setTimeout(() => {
+                // Calculate risk based on weighted factors
+                let riskScore = 0;
+                
+                // Attendance factor (30% weight)
+                if (attendance < 75) riskScore += 30;
+                else if (attendance < 85) riskScore += 15;
+                
+                // Marks factor (30% weight)
+                if (marks < 60) riskScore += 30;
+                else if (marks < 75) riskScore += 20;
+                else if (marks < 85) riskScore += 10;
+                
+                // Assignment factor (20% weight)
+                if (assignments < 70) riskScore += 20;
+                else if (assignments < 85) riskScore += 10;
+                
+                // Backlogs factor (15% weight)
+                riskScore += Math.min(parseInt(backlogs) * 5, 15);
+                
+                // Payment factor (5% weight)
+                if (payment === '0') riskScore += 5;
+                
+                // Cap risk score at 100
+                riskScore = Math.min(riskScore, 100);
+                
+                // Display results
+                displayResults(riskScore, name);
+                
+                // Remove loading state
+                btn.classList.remove('loading');
+            }, 2000);
+        }
+
+        function displayResults(riskScore, studentName) {
+            const resultContainer = document.getElementById('result');
+            const resultTitle = document.getElementById('result-title');
+            const resultDescription = document.getElementById('result-description');
+            const probabilityValue = document.getElementById('probability-value');
+            const recommendationsList = document.getElementById('recommendations-list');
+            
+            // Set risk level
+            const isHighRisk = riskScore > 50;
+            resultContainer.className = `result-container show ${isHighRisk ? 'high-risk' : 'low-risk'}`;
+            
+            // Update content
+            resultTitle.textContent = isHighRisk ? 'High Dropout Risk Detected' : 'Low Dropout Risk';
+            resultDescription.textContent = `Analysis complete for ${studentName}`;
+            probabilityValue.textContent = `${riskScore}%`;
+            
+            // Generate recommendations
+            const recommendations = generateRecommendations(riskScore);
+            recommendationsList.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+            
+            // Scroll to results
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateRecommendations(riskScore) {
+            const recommendations = [];
+            
+            if (riskScore > 70) {
+                recommendations.push('Immediate intervention required - schedule counseling session');
+                recommendations.push('Assign academic mentor for personalized support');
+                recommendations.push('Consider remedial classes for struggling subjects');
+                recommendations.push('Explore financial aid options if payment issues exist');
+            } else if (riskScore > 40) {
+                recommendations.push('Regular monitoring and check-ins recommended');
+                recommendations.push('Encourage participation in study groups');
+                recommendations.push('Provide additional academic resources');
+                recommendations.push('Consider early warning system enrollment');
+            } else {
+                recommendations.push('Continue current academic path with regular monitoring');
+                recommendations.push('Encourage participation in extracurricular activities');
+                recommendations.push('Consider peer mentoring opportunities');
+                recommendations.push('Maintain current support systems');
+            }
+            
+            return recommendations;
+        }
+    </script>
 </body>
 </html>
