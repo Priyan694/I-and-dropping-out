@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Dropout Prediction</title>
+  <link rel="stylesheet" href="style.css"> 
+    
+  
+</head>
+<body>
+  <div class="container">
+    <h2>Student Dropout Prediction</h2>
+
+    <label>Name:</label>
+    <input type="text" id="name">
+
+    <label>Department:</label>
+    <input type="text" id="dept">
+
+    <label>Year:</label>
+    <input type="number" id="year">
+
+    <label>Attendance %:</label>
+    <input type="number" id="attendance">
+
+    <label>Average Marks:</label>
+    <input type="number" id="marks">
+
+    <label>Assignments Submitted %:</label>
+    <input type="number" id="assignments">
+
+    <label>Backlogs:</label>
+    <input type="number" id="backlogs">
+
+    <label>Payment Status (1 = Paid, 0 = Not Paid):</label>
+    <input type="number" id="payment" value="1">
+
+
+
+    <button onclick="predict()">Predict</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
